@@ -24,7 +24,7 @@ pip install django
 
 Install django_year_calendar (or give an access)
 ```bash
-pip install -i https://test.pypi.org/simple/ django-year-calendar
+pip install [-i https://test.pypi.org/simple/] django-year-calendar
 #  or
 python setup.py install
 # or put current directory in PYTHONPATH
@@ -101,7 +101,5 @@ class MyEvent(models.Model):
 ```
 
 ### TODO
-test v0.1.2
-
 WIP ...
 

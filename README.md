@@ -14,7 +14,7 @@ Get started
 
 Clone the repository or download the project
 
-optional: set a django environnement, then activate
+Optional: set a django environnement, then activate
 ```bash
 python -m venv venv
 venv\Scripts\activate.bat (windows)
@@ -22,9 +22,12 @@ venv\Scripts\activate.bat (windows)
 pip install django
 ```
 
-Install django_year_calendar (or put current directory in PYTHONPATH)
+Install django_year_calendar (or give an access)
 ```bash
-pip install django_year_calendar
+pip install -i https://test.pypi.org/simple/ django-year-calendar
+#  or
+python setup.py install
+# or put current directory in PYTHONPATH
 ```
 
 Go to the example django project, initialize the project then run dev server
@@ -34,7 +37,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Usage in an existing django project
+Usage for an existing django project
 ========
 Add the django_year_app to your project
 ```bash
@@ -55,7 +58,7 @@ urlpatterns = [
 ]
 ```
 
-You may add some settings in your settings.py file:
+You may (or not) add some settings in your settings.py file:
 ```python
 CALENDAR_LANG  = "fr"   # see https://github.com/year-calendar/js-year-calendar/tree/master/locales
 CALENDAR_WEEKSTART = 1  # monday
@@ -98,6 +101,7 @@ class MyEvent(models.Model):
 ```
 
 ### TODO
+test v0.1.2
 
-soon ...
+WIP ...
 

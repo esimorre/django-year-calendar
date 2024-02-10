@@ -2,6 +2,10 @@ name: Django CI
 
 on:
   workflow_dispatch:
+  
+  push:
+    branches:
+    - master
 
 jobs:
   build:
@@ -10,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.11]
+        python-version: [3.6,3.8,3.11,3.12]
 
     steps:
     - uses: actions/checkout@v3

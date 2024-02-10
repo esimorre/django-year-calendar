@@ -1,1 +1,2 @@
 graft django_year_calendar/templates
+graft django_year_calendar/static

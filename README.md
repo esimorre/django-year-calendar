@@ -36,8 +36,13 @@ Go to the example django project, initialize the project then run dev server
 ```bash
 cd example_project
 python manage.py migrate
+python manage.py loaddata sample_data.json
 python manage.py runserver
 ```
+Check then http://localhost:8000
+
+You can also go to the admin panel http://localhost:8000/admin (login admin passwd admin) to browse models
+and add some more data.
 
 Usage for an existing django project
 ========
@@ -101,7 +106,15 @@ class MyEvent(models.Model):
         if self.type == 'yellow': return 'background'
         return 'border'
 ```
+You can make your own views in various ways depending on your needs:
+ * new templates based on the provided ones in django_year_calendar/templates
+ * parameters in the urls.py file
+ * new views based on CalendarView provided by the django_year_calendar app
 
-### TODO
-WIP ...
+See example_project for more details.
+
+### Future
+ * Customizing the calendar view based on user rights
+ * Helpers for building event editing views
+ * ...
 

@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='django_year_calendar',
-    version='0.1.3',
+    version='0.1.4',
     description='A year calendar application for django',
     url='https://github.com/esimorre/django-year-calendar',
     
@@ -15,6 +15,8 @@ setup(
     
     platforms=['any'],
     packages=["django_year_calendar",],
+    package_data = {"django_year_calendar.static": ["*.css"],
+                    "django_year_calendar.templates": ["*.html", "*.js"]},
     include_package_data=True,
     zip_safe=False,
     keywords=['django', 'calendar'],

@@ -1,5 +1,7 @@
 Django year calendar
 ====================
+[![Django CI](https://github.com/esimorre/django-year-calendar/actions/workflows/django.yml/badge.svg)](https://github.com/esimorre/django-year-calendar/actions/workflows/django.yml)
+
 A django app based on [js-year-calendar](https://github.com/year-calendar/js-year-calendar/)
 
 <img src="https://year-calendar.github.io/assets/img/calendar.png">

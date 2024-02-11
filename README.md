@@ -1,5 +1,6 @@
 Django year calendar
 ====================
+
 [![Django CI](https://github.com/esimorre/django-year-calendar/actions/workflows/django.yml/badge.svg)](https://github.com/esimorre/django-year-calendar/actions/workflows/django.yml)
 
 A django app based on [js-year-calendar](https://github.com/year-calendar/js-year-calendar/)
@@ -45,7 +46,8 @@ You can also go to the admin panel http://localhost:8000/admin (login admin pass
 and add some more data.
 
 Usage for an existing django project
-========
+====================================
+
 Add the django_year_app to your project
 ```bash
 INSTALLED_APPS = [
@@ -114,6 +116,7 @@ You can make your own views in various ways depending on your needs:
 See example_project for more details.
 
 ### Future
+
  * Customizing the calendar view based on user rights
  * Helpers for building event editing views
  * ...

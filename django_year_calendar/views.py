@@ -8,31 +8,31 @@ from django_year_calendar.utils import fill_context_extra
 
 
 class CalendarView(TemplateView):
-    template_name = "django_year_calendar/minimal.html"
+    template_name = "django_year_calendar/base.html"
     def get_context_data(self, **kwargs):
-        key = getattr(settings, "CALENDAR_LANG")
+        key = getattr(settings, "CALENDAR_LANG", None)
         if key:
             kwargs['calendar_lang'] = key
         options = ''
-        key = getattr(settings, "CALENDAR_WEEKSTART")
+        key = getattr(settings, "CALENDAR_WEEKSTART", None)
         if key: options += 'weekStart: %s , ' % key
 
-        key = getattr(settings, "CALENDAR_WEEKNUMBER")
+        key = getattr(settings, "CALENDAR_WEEKNUMBER", None)
         if key: options += 'displayWeekNumber: %s , ' % str(key).lower()
 
-        key = getattr(settings, "CALENDAR_RENDERER")
+        key = getattr(settings, "CALENDAR_RENDERER", None)
         if key:
             if key in ('border', 'background'): options += "style: \'%s\' , " % key
             else:  kwargs['custom'] = key
 
         kwargs['options'] = options
 
-        fill_context_extra(kwargs, getattr(settings, "CALENDAR_VIEWS"))
+        fill_context_extra(kwargs, getattr(settings, "CALENDAR_VIEWS", {}))
 
         return super().get_context_data(**kwargs)
 
     def get_template_names(self):
-        templ_conf = getattr(settings, "CALENDAR_TPL")
+        templ_conf = getattr(settings, "CALENDAR_TPL", 'django_year_calendar/base')
         if templ_conf:
             return ['%s.html' % templ_conf]
         return super().get_template_names()

@@ -1,11 +1,9 @@
-{% extends './base.html' %}
-{% block header_content %} {% include './menu.html' %} {% endblock %}
-
+{% extends './bootstrap5.html' %}
 {% load static %}
-{% block title %}Calendar for django (style){% endblock %}
 
 
 {% block extrastyle %}
+  {{ block.super }}
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700'>
   <link rel='stylesheet' href='{% static "css/calendar1.css" %}'>
 {% endblock %}

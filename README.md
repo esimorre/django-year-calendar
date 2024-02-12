@@ -27,7 +27,7 @@ pip install django
 
 Install django_year_calendar (or give an access)
 ```bash
-pip install [-i https://test.pypi.org/simple/] django-year-calendar
+pip install django-year-calendar
 #  or
 python setup.py install
 # or put current directory in PYTHONPATH
@@ -105,7 +105,6 @@ class MyEvent(models.Model):
     def infos(self) -> str:
         return "my birthday"
     def style(self) -> str ('background' | 'border' ):
-        if self.type == 'yellow': return 'background'
         return 'border'
 ```
 You can make your own views in various ways depending on your needs:

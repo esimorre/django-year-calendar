@@ -1,0 +1,22 @@
+<div class="modal-header">
+	<h5 class="modal-title" id="exampleModalLabel">Informations</h5>
+</div>
+
+<div class="modal-body">
+	{% include './selection_header.html' %}
+
+{% for evt in events %}
+	{% if evt.cls_template_name %}
+		{% include evt.cls_template_name %}
+    {% else %}
+		{% include './base_event' %}
+    {% endif %}
+{% endfor %}
+
+<p><i>(template: selection.html)</i></p>
+
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>
+</div>

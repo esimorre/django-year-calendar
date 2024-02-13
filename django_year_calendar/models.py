@@ -9,3 +9,6 @@ class EventMixin:
 
     def cls_label(self):
         return self._meta.verbose_name
+
+    def cls_template_name(self):
+        return './%s.html' % self._meta.model_name

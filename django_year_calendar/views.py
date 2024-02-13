@@ -2,6 +2,7 @@ from datetime import date
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.http import Http404
 from django.views.generic import TemplateView
 
 from django_year_calendar.utils import fill_context_extra
@@ -9,6 +10,7 @@ from django_year_calendar.utils import fill_context_extra
 
 class CalendarView(TemplateView):
     template_name = "django_year_calendar/base.html"
+
     def get_context_data(self, **kwargs):
         key = getattr(settings, "CALENDAR_LANG", None)
         if key:
@@ -50,9 +52,12 @@ class SelectionView(TemplateView):
         if start: self.extra_context['start'] = date.fromtimestamp(start)
         if end: self.extra_context['end'] = date.fromtimestamp(end)
         if req:
-            for item in req.split('&'):
-                ctype_id, id = item.split(':')
-                ctype = ContentType.objects.get_for_id(int(ctype_id))
-                event = ctype.get_object_for_this_type(pk=int(id))
-                self.extra_context['events'].append( event )
+            try:
+                for item in req.split('&'):
+                    ctype_id, id = item.split(':')
+                    ctype = ContentType.objects.get_for_id(int(ctype_id))
+                    event = ctype.get_object_for_this_type(pk=int(id))
+                    self.extra_context['events'].append( event )
+            except Exception as e:
+                raise Http404("Error")
         return super().get(request, *args, **kwargs)

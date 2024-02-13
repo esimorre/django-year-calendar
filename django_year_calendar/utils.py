@@ -3,8 +3,14 @@ import importlib
 from django.db import models
 
 
-def fill_events(params):
-    return list(params['qset']())
+def fill_events(params, border_level=0, force_color=None):
+    items = list(params['qset']())
+    if border_level > 0:
+        for ob in items: ob.border_level = border_level
+    if force_color:
+        for ob in items: ob.force_color = force_color
+    return items
+
 
 
 def load_manager(view_settings):
@@ -34,8 +40,12 @@ def fill_context_extra(kwargs, view_settings):
     if not view_settings: return
     for v in view_settings:
         load_manager(v)
+    border_level = 0
     for dic in view_settings:
         if 'qset' in dic:
-            l = fill_events(dic)
+            force_color = None
+            if 'border' in dic and dic['border']: border_level +=1
+            if 'force_color' in dic and dic['force_color']: force_color = dic['force_color']
+            l = fill_events(dic, border_level, force_color)
             kwargs['events'].extend(l)
 

@@ -2,6 +2,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 class EventMixin:
+    border_level = 0
+    force_color = None
     def ctype_id(self):
         cls = self._meta.model
         ct = ContentType.objects.get_for_model(cls)

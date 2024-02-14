@@ -1,16 +1,11 @@
 Django year calendar
 ====================
 
-[![Django CI](https://github.com/esimorre/django-year-calendar/actions/workflows/django.yml/badge.svg)](https://github.com/esimorre/django-year-calendar/actions/workflows/django.yml)
+![dyc-img](https://github.com/esimorre/django-year-calendar/assets/697460/09fa7e8b-34e7-4765-b1e2-c0a96a32979a)
 
 A django app based on [js-year-calendar](https://github.com/year-calendar/js-year-calendar/)
 
-<img src="https://year-calendar.github.io/assets/img/calendar.png">
-
-Dynamic view implemented with Bootstrap 5 and JS Fetch API (no jquery).
-
-Popups are not supported,
-replaced by a modal dialog raised on date range selection.
+Dynamic view implemented with Bootstrap 5 and JS Fetch API (no jquery); popups are not supported, they are replaced by a modal component.
 
 Get started
 ===========
@@ -78,17 +73,19 @@ CALENDAR_TPL = "django_year_calendar/bootstrap5"
 CALENDAR_RENDERER = 'background'
 
 CALENDAR_VIEWS = [
+    # place background display view(s) first
     ...
-    {'manager': 'app.models.MyModel[.myManager[.a_method]]',
-     'color': 'blue',
-     'style': 'background | border'},
+    { 'manager': 'app.models.MyModel[.myManager[.a_method]]' [, 'border':True] [, 'force_color': 'PaleGreen'] },
+        # manager:      name of an object that generates events     (see MyEvent below) 
+        # border:       set to True to force border type display    (overrides the event style() method)
+        # force_color:  forces event color display                  (overrides the event color() method)
     ...
 ]
 ```
 
 Add some code to the models to display on the calendar, 
 ```bash
-class MyEvent(models.Model):
+class MyEvent(models.Model, EventMixin): # without EventMixin, advanced features will not be available
     ...
     # REQUIRED
     def start_date(self) -> DateField | date :
@@ -101,12 +98,12 @@ class MyEvent(models.Model):
     
     # optional
     def color(self) -> str:
-        return 'blue'
-    def infos(self) -> str:
-        return "my birthday"
+        return 'blue' # https://www.w3.org/wiki/CSS/Properties/color/keywords
+        
     def style(self) -> str ('background' | 'border' ):
         return 'border'
 ```
+
 You can make your own views in various ways depending on your needs:
  * new templates based on the provided ones in django_year_calendar/templates
  * parameters in the urls.py file

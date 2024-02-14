@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='django_year_calendar',
-    version='0.1.8',
+    version='0.5.0',
     description='A year calendar application for django',
     url='https://github.com/esimorre/django-year-calendar',
     
@@ -22,7 +22,7 @@ setup(
     keywords=['django', 'calendar'],
     install_requires=['django',],
     classifiers=[  # Optional
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Framework :: Django",

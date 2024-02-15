@@ -10,9 +10,11 @@
 			}
 			data = data.replace(/&$/, "/")
 		}
-		data += e.startDate.getTime()/1000 + '/'+ e.endDate.getTime()/1000
+		var reqdata = "{% url 'calendar_view_name' %}select" + data ;
+		reqdata += e.startDate.getTime()/1000 + '/'+ e.endDate.getTime()/1000;
+        console.log(reqdata);
 
-		const req = new Request('select' + data);
+		const req = new Request(reqdata);
 		fetch(req)
 		  .then(response => response.text())
 		  .then(result => {
